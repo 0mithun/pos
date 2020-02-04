@@ -88,9 +88,9 @@ class ModuleController extends Controller
     public function edit($id)
     {
 
-//        $module = Module::find($id);
-//        $role = Role::all();
-//        return view('backend.module.edit',compact('module','role'));
+       $module = Module::find($id);
+       $role = Role::all();
+       return view('backend.module.edit',compact('module','role'));
     }
     /**
      * Update the specified resource in storage.

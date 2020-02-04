@@ -12,4 +12,9 @@ class Module extends Model
     {
         return $this->belongsToMany('App\Models\User', 'role_modules');
     }
+
+    function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'role_modules');
+    }
 }
