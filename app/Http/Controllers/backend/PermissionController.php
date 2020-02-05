@@ -17,9 +17,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        $title = 'Permission';
         $this->checkpermission('permission-list');
         $permission = Permission::all();
-        return view('backend.permission.list', compact('permission','check'));
+        return view('backend.permission.list', compact('permission', 'title'));
     }
 
     /**
@@ -29,8 +30,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        $title = 'Create Permission';
         $this->checkpermission('permission-create');
-        return view('backend.permission.create');
+        return view('backend.permission.create', compact('title'));
     }
 
     /**
@@ -76,9 +78,10 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        $title = 'Edit Permission';
         $this->checkpermission('permission-edit');
         $permission = Permission::find($id);
-        return view('backend.permission.edit', compact('permission'));
+        return view('backend.permission.edit', compact('permission', 'title'));
     }
 
     /**
@@ -92,7 +95,7 @@ class PermissionController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'permission_key' => 'required|unique:permissions',
+            'permission_key' => 'required|unique:permissions,permission_key,'.$id,
         ]);
 
         $permission = Permission::find($id);
@@ -125,12 +128,13 @@ class PermissionController extends Controller
 
     public function asign($id)
     {
+        $title = 'Assign Permission';
         $this->checkpermission('permission-asign');
 
         $roledetails = Role::find($id);
         $permission = Permission::all();
         $currentpermission = $roledetails->permissions;
-        return view('backend.permission.asign', compact('roledetails', 'permission', 'currentpermission'));
+        return view('backend.permission.asign', compact('roledetails', 'permission', 'currentpermission','title'));
     }
 
     public function permissionasign(Request $request, $id)

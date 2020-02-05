@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Purchase  Page
-@endsection
+
 @section('css')
 
 @endsection

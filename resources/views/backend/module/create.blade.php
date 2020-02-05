@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Module create Page
-@endsection
+
 @section('css')
 
 @endsection

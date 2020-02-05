@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function index()
     {
         //$birthday = Sale::whereMonth('sales_date', '=', date('m'))->whereDay('sales_date', '=', date('d')+1)->get();
-
+        $title = "Dashboard";
         $sales = Sale::all();
         $totalrevenue = 0;
         if ($sales) {
@@ -37,7 +37,7 @@ class DashboardController extends Controller
         $totalcategory = count($ccategory);
         $totalproduct = count($cproduct);
         $salescart = Salescart::all();
-        return view('backend.dashboard.index', compact('totalrevenue', 'totalcategory', 'totalproduct', 'salescart'));
+        return view('backend.dashboard.index', compact('totalrevenue', 'totalcategory', 'totalproduct', 'salescart','title'));
     }
 
     /**

@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Bank Transaction  Page
-@endsection
+
 @section('css')
     <link  href="{{asset('backend/plugins/datepicker/datepicker.css')}}" rel="stylesheet">
 @endsection

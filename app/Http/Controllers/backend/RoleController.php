@@ -15,9 +15,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //$this->checkpermission('role-list');
+
+        $title = 'Role';
+        $this->checkpermission('role-list');
         $role = Role::all();
-        return view('backend.role.list', compact('role'));
+        return view('backend.role.list', compact('role', 'title'));
     }
 
     /**
@@ -27,8 +29,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //$this->checkpermission('role-create');
-        return view('backend.role.create');
+        $title = 'Create Role';
+        $this->checkpermission('role-create');
+        return view('backend.role.create', compact('title'));
     }
 
     /**

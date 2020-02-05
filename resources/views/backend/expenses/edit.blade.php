@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-     Edit Expenses Tracking Page
-@endsection
+
 @section('css')
 
 @endsection

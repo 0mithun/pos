@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{asset('images/user.png')}}" rel="icon" type="image/x-icon"/>
     <link href="{{asset('images/user.png')}}" rel="shortcut icon" type="image/x-icon"/>
-    <title>@Yield('title')</title>
+    <title> {{ config('app.name')  }} | {{ $title }}</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">

@@ -17,10 +17,11 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $title = 'Transaction';
         $this->checkpermission('transaction-list');
         $transaction = Transaction::orderBy('created_at', 'DEC')->where('remainingamount', '>', 0)->get();
         $finaltransaction = Transaction::orderBy('created_at', 'DEC')->where('remainingamount', '<=', 0)->get();
-        return view('backend.transaction.list', compact('transaction', 'finaltransaction'));
+        return view('backend.transaction.list', compact('transaction', 'finaltransaction', 'title'));
     }
 
     /**
@@ -30,8 +31,9 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        $title = 'Create Transaction';
         $this->checkpermission('transaction-create');
-        return view('backend.transaction.create');
+        return view('backend.transaction.create', compact('title'));
     }
 
     /**

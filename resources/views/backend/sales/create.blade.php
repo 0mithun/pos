@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Make Sales Page
-@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{asset('backend/plugins/select2.min.css')}}">
     <link  href="{{asset('backend/plugins/datepicker/datepicker.css')}}" rel="stylesheet">

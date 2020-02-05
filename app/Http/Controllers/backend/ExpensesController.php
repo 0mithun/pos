@@ -18,9 +18,10 @@ class ExpensesController extends Controller
      */
     public function index()
     {
+        $title = "Expenses";
         $this->checkpermission('expenses-list');
         $expenses = Expense::orderBy('created_at', 'DEC')->get();
-        return view('backend.expenses.list', compact('expenses'));
+        return view('backend.expenses.list', compact('expenses', 'title'));
     }
 
     /**
@@ -30,9 +31,10 @@ class ExpensesController extends Controller
      */
     public function create()
     {
+        $title = "Create Expenses";
         $this->checkpermission('expenses-create');
         $expensesheading = Expensestitle::orderBy('created_at', 'DEC')->get();
-        return view('backend.expenses.create', compact('expensesheading'));
+        return view('backend.expenses.create', compact('expensesheading','title'));
     }
 
     /**
@@ -85,9 +87,10 @@ class ExpensesController extends Controller
      */
     public function edit($id)
     {
+        $title = "Edit Expenses";
         $this->checkpermission('expenses-edit');
         $expenses = Expense::find($id);
-        return view('backend.expenses.edit', compact('expenses'));
+        return view('backend.expenses.edit', compact('expenses', 'title'));
     }
 
     /**

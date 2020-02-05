@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{asset('backend/images/logo.png')}}" rel="icon" type="image/x-icon"/>
     <link href="{{asset('backend/images/logo.png')}}" rel="shortcut icon" type="image/x-icon"/>
-    <title>Page Not Found</title>
+    <title>{{ config('app.name') }} | Page Not Found</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">

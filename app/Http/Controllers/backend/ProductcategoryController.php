@@ -18,9 +18,11 @@ class ProductcategoryController extends Controller
      */
     public function index()
     {
+        $title = 'Product Category';
+
         $this->checkpermission('productcategory-list');
         $productcategory = Productcategory::all();
-        return view('backend.productcategory.list',compact('productcategory'));
+        return view('backend.productcategory.list',compact('productcategory', 'title'));
     }
 
     /**
@@ -30,8 +32,9 @@ class ProductcategoryController extends Controller
      */
     public function create()
     {
+        $title = 'Create Product Category';
         $this->checkpermission('productcategory-create');
-        return view('backend.productcategory.create');
+        return view('backend.productcategory.create', compact('title'));
     }
 
     /**
@@ -79,9 +82,10 @@ class ProductcategoryController extends Controller
      */
     public function edit($id)
     {
+        $title = 'Edit Category';
         $this->checkpermission('productcategory-edit');
         $productcategory = Productcategory::find($id);
-        return view('backend.productcategory.edit',compact('productcategory'));
+        return view('backend.productcategory.edit',compact('productcategory', 'title'));
     }
 
     /**

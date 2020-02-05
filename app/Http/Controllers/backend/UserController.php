@@ -21,7 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user.login');
+        $title = 'User Login';
+        return view('backend.user.login', compact('title'));
     }
 
     /**
@@ -31,9 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $title = 'Create User';
         $this->checkpermission('user-register');
         $role = Role::all();
-        return view('backend.user.register', compact('role'));
+        return view('backend.user.register', compact('role', 'title'));
     }
 
     /**

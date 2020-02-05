@@ -18,9 +18,10 @@ class ModuleController extends Controller
 
     public function index()
     {
+        $title = ' Module';
         $this->checkpermission('module-list');
         $module = Module::orderBy('name', 'asc')->paginate(10);
-        return view('backend.module.list', compact('module'));
+        return view('backend.module.list', compact('module', 'title'));
     }
 
     /**
@@ -30,9 +31,10 @@ class ModuleController extends Controller
      */
     public function create()
     {
+        $title = ' Create Module';
         $this->checkpermission('module-create');
         $role = Role::all();
-        return view('backend.module.create', compact('role'));
+        return view('backend.module.create', compact('role', 'title'));
     }
     /**
      * Store a newly created resource in storage.
@@ -87,10 +89,10 @@ class ModuleController extends Controller
      */
     public function edit($id)
     {
-
+        $title = ' Edit Module';
        $module = Module::find($id);
        $role = Role::all();
-       return view('backend.module.edit',compact('module','role'));
+       return view('backend.module.edit',compact('module','role', 'title'));
     }
     /**
      * Update the specified resource in storage.
@@ -99,9 +101,37 @@ class ModuleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Module $module)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'module_key' => 'required|unique:modules,module_key,'.$module->id,
+            'module_url' => 'required',
+            'module_rank' => 'required',
+        ]);
+        $module->update([
+            'name' => $request->name,
+            'module_key' => $request->module_key,
+            'module_url' => $request->module_url,
+            'view_sidebar' => $request->view_sidebar,
+            'module_icon' => $request->module_icon,
+            'module_rank' => $request->module_rank,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+            RoleModule::where('module_id', $module->id)->delete();
+            foreach ($request->roles as $role) {
+                
+                
 
+                $rolemodule = new RoleModule();
+                $rolemodule->module_id = $module->id;
+                $rolemodule->role_id = $role;
+                $rolemodule->save();
+            }
+            return redirect()->route('module.list')->with('success_message', 'You are successfully Updated');
+        
+            return redirect()->route('module.create')->with('error_message', 'You con not create rignt now');
+            
     }
 
     /**

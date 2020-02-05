@@ -17,9 +17,10 @@ class SalesController extends Controller
 {
     public function create()
     {
+        $title = 'Create Role';
         $this->checkpermission('sales-create');
         $salescart = Salescart::all();
-        return view('backend.sales.create', compact('sales', 'salescart'));
+        return view('backend.sales.create', compact('salescart', 'title'));
     }
 
     public function store(Request $request)
@@ -52,33 +53,37 @@ class SalesController extends Controller
 
     public function index()
     {
+        $title = 'Sales';
         $this->checkpermission('sales-list');
         $sales = Sale::join('products', 'products.id', '=', 'sales.product_id')
             ->select('sales.*', 'products.name')
             ->orderBy('sales.created_at', 'DEC')
             ->get();
-        return view('backend.sales.list', compact('sales'));
+        return view('backend.sales.list', compact('sales', 'title'));
     }
 
     public function ajaxlist()
     {
+        $title = 'Sales';
         $sales = Salescart::join('products', 'products.id', '=', 'salescarts.product_id')
             ->select('salescarts.*', 'products.name')
             ->orderBy('salescarts.created_at', 'DEC')
             ->get();
-        return view('backend.sales.ajaxlist', compact('sales'));
+        return view('backend.sales.ajaxlist', compact('sales', 'title'));
     }
 
     public function ajaxform()
     {
+        $title = 'Sales';
         $salescart = Salescart::all();
-        return view('backend.sales.ajaxform', compact('salescart'));
+        return view('backend.sales.ajaxform', compact('salescart','title'));
     }
 
     public function refreshproduct()
     {
+        $title = 'Refresh Sales';
         $product = Product::where('stock', '>=', 1)->get();
-        return view('backend.sales.refreshproduct', compact('product'));
+        return view('backend.sales.refreshproduct', compact('product', 'title'));
     }
 
     public function getquantity(Request $request)
@@ -102,10 +107,11 @@ class SalesController extends Controller
 
     public function getallpdf()
     {
+        $title = 'Sales Report';
         $report = Salescart::join('products', 'products.id', '=', 'salescarts.product_id')
             ->select('salescarts.*', 'products.name')
             ->get();
-        return view('backend.pdfbill.salesbill', compact('report'));
+        return view('backend.pdfbill.salesbill', compact('report', 'title'));
     }
 
     public function getcustomreport(Request $request)
@@ -114,11 +120,18 @@ class SalesController extends Controller
         $end = $request->end;
         $report = Sale::join('products', 'products.id', 'sales.product_id')
             ->select('sales.*', 'products.name')
-            ->whereBetween('sales.sales_date', [$start, $end])
+            //->whereBetween('sales.sales_date', [$start, $end])
             ->get();
+  
+
+        // dd($report);
+
         $pdf = PDF::loadview('backend.pdfbill.allreport', compact('report', 'start', 'end'));
         return $pdf->download('salesreport.pdf');
     }
+
+
+
 
     public function savetosales(Request $request)
     {

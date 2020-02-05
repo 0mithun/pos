@@ -17,11 +17,12 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $title = 'Product';
         $this->checkpermission('product-list');
         $product = Product::join('productcategories', 'products.productcategory_id', '=', 'productcategories.id')
             ->select('products.*', 'productcategories.name as n')
             ->get();
-        return view('backend.product.list', compact('product'));
+        return view('backend.product.list', compact('product', 'title'));
     }
 
     /**
@@ -31,9 +32,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $title = 'Create Product';
         $this->checkpermission('product-create');
         $productcategory = Productcategory::all();
-        return view('backend.product.create', compact('productcategory'));
+        return view('backend.product.create', compact('productcategory', 'title'));
     }
 
     /**
@@ -88,10 +90,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $title = 'Edit Product';
         $this->checkpermission('product-edit');
         $product = Product::find($id);
         $productcategory = Productcategory::all();
-        return view('backend.product.edit', compact('product', 'productcategory'));
+        return view('backend.product.edit', compact('product', 'productcategory', 'title'));
     }
 
     /**
@@ -153,8 +156,9 @@ class ProductController extends Controller
 
     public function stockedit($id)
     {
+        $title = 'Product Details';
         $product = Product::find($id);
-        return view('backend.product.stockupdate', compact('product'));
+        return view('backend.product.stockupdate', compact('product', 'title'));
     }
 
     public function stockupdate(Request $request, $id)

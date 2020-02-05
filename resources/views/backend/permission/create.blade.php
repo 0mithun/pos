@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Permission create Page
-@endsection
+
 @section('css')
 
 @endsection

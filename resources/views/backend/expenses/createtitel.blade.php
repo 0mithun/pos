@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    New Expenses Heading Create
-@endsection
+
 @section('css')
 
 @endsection

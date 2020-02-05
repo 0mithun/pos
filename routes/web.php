@@ -36,7 +36,7 @@ Route::group(['middleware' => 'Revalidate'],function() {
         Route::post('/module-store', ['as' => 'module.store', 'uses' => 'backend\ModuleController@store']);
         Route::get('/module-list', ['as' => 'module.list', 'uses' => 'backend\ModuleController@index']);
         Route::get('/module-edit/{id}', ['as' => 'module.edit', 'uses' => 'backend\ModuleController@edit']);
-        Route::post('/module-update/{id}', ['as' => 'module.update', 'uses' => 'backend\ModuleController@update']);
+        Route::post('/module-update/{module}', ['as' => 'module.update', 'uses' => 'backend\ModuleController@update']);
 
         Route::get('/role-create', ['as' => 'role.create', 'uses' => 'backend\RoleController@create']);
         Route::post('/role-store', ['as' => 'role.store', 'uses' => 'backend\RoleController@store']);

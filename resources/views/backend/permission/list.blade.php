@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Permission Listing Page
-@endsection
+
 @section('css')
 
 @endsection

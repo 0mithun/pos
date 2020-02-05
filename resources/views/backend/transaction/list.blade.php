@@ -1,7 +1,4 @@
 @extends('backend.layouts.master')
-@section('title')
-    Transaction Listing Page
-@endsection
 @section('css')
 
 @endsection

@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-   Make Sales Listing Page
-@endsection
+
 @section('css')
     <link  href="{{asset('backend/plugins/datepicker/datepicker.css')}}" rel="stylesheet">
 @endsection
@@ -109,7 +107,7 @@
                                 </tfoot>
                             </table>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <form action="{{route('custom.report')}}" method="post">
                                 {{csrf_field()}}
                                 <div class="col-md-3">
@@ -122,7 +120,7 @@
                                     <button name="" class="btn btn-info">Import Report</button>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

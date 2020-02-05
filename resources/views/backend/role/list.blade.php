@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Role Listing Page
-@endsection
+
 @section('css')
 
 @endsection

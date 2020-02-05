@@ -17,10 +17,11 @@ class PurchaseController extends Controller
      */
     public function index()
     {
+        $title = 'Purchase';
         $this->checkpermission('purchase-list');
         $rempurchase = Purchase::orderBy('created_at', 'DEC')->where('dueamount', '>', 0)->get();
         $paidpurchase = Purchase::orderBy('created_at', 'DEC')->where('dueamount', '<=', 0)->get();
-        return view('backend.purchase.list', compact('paidpurchase', 'rempurchase'));
+        return view('backend.purchase.list', compact('paidpurchase', 'rempurchase', 'title'));
     }
 
     /**
@@ -30,8 +31,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
+        $title = 'Create Purchase';
         $this->checkpermission('purchase-create');
-        return view('backend.purchase.create');
+        return view('backend.purchase.create', compact('title'));
     }
 
     /**

@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Product Stock Update Page
-@endsection
+
 @section('css')
 
 @endsection

@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    ProductCategory create Page
-@endsection
+
 @section('css')
 
 @endsection

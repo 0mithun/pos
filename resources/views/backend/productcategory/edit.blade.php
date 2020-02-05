@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Productcategory Edit Page
-@endsection
+
 @section('css')
 
 @endsection

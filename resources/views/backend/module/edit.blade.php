@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
-@section('title')
-    Module Edit Page
-@endsection
+
 @section('css')
 
 @endsection
@@ -59,7 +57,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form action="{{route('module.store')}}" method="post">
+                            <form action="{{route('module.update', $module->id)}}" method="post">
                                 {{ csrf_field()}}
                                 <div class="form-group">
                                     <label for="name">Module Name</label>
